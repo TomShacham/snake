@@ -7,14 +7,22 @@ export interface Game {
 
 export class SnakeGame implements Game {
   public cells: string[][];
+  private topBottomBorder: string[];
 
-  constructor(public width: number, public height: number) {
+  constructor(public height: number, public width: number) {
+    this.topBottomBorder = [' ', ...('-'.repeat(width)), ' '];
     this.cells = [...new Array(height)].map(it => it).map(row => SnakeGame.rowOf(width));
   }
 
   print(): string {
-    const finalLineBreak = '\n';
-    return this.cells.map(row => row.join('\n')).join(' ') + finalLineBreak
+    const lineBreak = '\n';
+    return lineBreak +
+      this.topBottomBorder.join('') +
+      lineBreak +
+      this.cells.map(row => ['|', ...row, '|'].join('')).join('\n') +
+      lineBreak +
+      this.topBottomBorder.join('') +
+      lineBreak
   }
 
   private static rowOf(width: number) {

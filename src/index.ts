@@ -6,6 +6,6 @@ import {createNewGame} from "./SnakeGame";
 
   const game = createNewGame(Number(width), Number(height));
 
-  game.print();
+  console.log(game.print());
 
 })();

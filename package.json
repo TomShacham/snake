@@ -1,0 +1,22 @@
+{
+  "name": "snake",
+  "version": "0.0.0",
+  "description": "The classic game - Snake",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc --noEmit",
+    "test": "tsc --noEmit; mocha --require ts-node/register 'src/**/*.test.ts'",
+    "start": "ts-node src/index.ts"
+  },
+  "author": "Tom Shacham",
+  "license": "ISC",
+  "keywords": [],
+  "devDependencies": {
+    "@types/mocha": "2.2.47",
+    "@types/node": "9.4.0",
+    "mocha": "5.2.0",
+    "ts-node": "7.0.1",
+    "typescript": "3.0.1"
+  }
+}

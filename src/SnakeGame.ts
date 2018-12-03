@@ -5,7 +5,6 @@ export interface Game {
 }
 
 export class SnakeGame implements Game {
-  private cells: string[][];
   private topBottomBorder: string[];
 
   constructor(
@@ -14,7 +13,6 @@ export class SnakeGame implements Game {
     private snake: Snake,
   ) {
     this.topBottomBorder = [' ', ...('-'.repeat(width)), ' '];
-    this.cells = [...new Array(height)].map(it => it).map(row => SnakeGame.rowOf(width));
   }
 
   print(): string {
@@ -22,15 +20,39 @@ export class SnakeGame implements Game {
     return lineBreak +
       this.topBottomBorder.join('') +
       lineBreak +
-      this.cells.map(row => ['|', ...row, '|'].join('')).join('\n') +
-      lineBreak +
+      this.printArenaOrSnake() +
       this.topBottomBorder.join('') +
       lineBreak
   }
 
-  private static rowOf(width: number) {
-    return [...(' '.repeat(width))]
+  private printArenaOrSnake() {
+    let string = '';
+    for (let x=0; x < this.height; x++ ) {
+      string += '|';
+      for (let y=0; y < this.width; y++) {
+        if (this.snake.isSnake(x,y) === 'head') {
+          string += 'Q';
+          continue;
+        }
+        if (this.snake.isSnake(x,y) === 'tail') {
+          string += 'o';
+          continue;
+        }
+        string += ' '
+      }
+      string += '|\n'
+    }
+    return string;
   }
+
+  /*
+   ----------> y
+  |
+  |
+  |
+  |
+  x
+   */
 
 }
 

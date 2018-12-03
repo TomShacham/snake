@@ -3,7 +3,7 @@ import { Cell, Direction, snake } from "./Snake";
 
 describe("Snake", () => {
 
-  it("has a head and a tail", () => {
+  it("has a head", () => {
     deepEqual(snake().head, new Cell(2,1))
   });
 

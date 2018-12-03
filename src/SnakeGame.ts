@@ -1,15 +1,18 @@
+import { Snake } from "./Snake";
+
 export interface Game {
-  width: number;
-  height: number;
-  cells: Array<Array<string>>;
   print(): string;
 }
 
 export class SnakeGame implements Game {
-  public cells: string[][];
+  private cells: string[][];
   private topBottomBorder: string[];
 
-  constructor(public height: number, public width: number) {
+  constructor(
+    private width: number,
+    private height: number,
+    private snake: Snake,
+  ) {
     this.topBottomBorder = [' ', ...('-'.repeat(width)), ' '];
     this.cells = [...new Array(height)].map(it => it).map(row => SnakeGame.rowOf(width));
   }
@@ -31,6 +34,3 @@ export class SnakeGame implements Game {
 
 }
 
-export function createNewGame(width: number, height: number): Game {
-  return new SnakeGame(width, height);
-}

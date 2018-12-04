@@ -47,4 +47,10 @@ describe("Snake", () => {
       snake([cell(2, 1), cell(1, 1)], Direction.Down))
   });
 
+  it('commanded to move in a new direction (right)', () => {
+    deepEqual(
+      snake([cell(2, 0), cell(1, 0)], Direction.Up).move('d'),
+      snake([cell(3, 0), cell(2, 0)], Direction.Right))
+  });
+
 });

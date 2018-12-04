@@ -3,7 +3,7 @@ import { Snake } from "./Snake";
 
 
 export interface Game {
-  nextFrame(): Promise<Game>
+  nextFrame(command: string): Promise<Game>
   print(): string;
 }
 
@@ -28,8 +28,8 @@ export class SnakeGame implements Game {
       lineBreak
   }
 
-  async nextFrame(): Promise<Game> {
-    const newSnake = this.snake.move();
+  async nextFrame(command: string | undefined = undefined): Promise<SnakeGame> {
+    const newSnake = this.snake.move(command);
     return new SnakeGame(this.width, this.height, newSnake);
   }
 

@@ -22,11 +22,24 @@ export function cell(x: number, y: number): Cell {
   return new Cell(x, y);
 }
 
-export enum Direction {
-  Up = 'up',
-  Down = 'down',
-  Left = 'left',
-  Right = 'right',
+export class Direction {
+  static Up = 'w';
+  static Left = 'a';
+  static Down = 's';
+  static Right = 'd';
+
+  static fromCommand(command: string) {
+    switch (command) {
+      case 'w':
+        return this.Up;
+      case 'a':
+        return this.Left;
+      case 's':
+        return this.Down;
+      case 'd':
+        return this.Right;
+    }
+  }
 }
 
 export class Snake {
@@ -52,16 +65,18 @@ export class Snake {
     return 'none';
   }
 
-  move(): Snake {
-    switch (this.direction) {
+  move(command: string | undefined = undefined): Snake {
+    const newOrPreviousDirection = command ? Direction.fromCommand(command) : this.direction;
+
+    switch (newOrPreviousDirection) {
       case Direction.Right:
-        return new Snake(this.cells.map(cell => cell.moveRight()), this.direction);
+        return new Snake(this.cells.map(cell => cell.moveRight()), newOrPreviousDirection);
       case Direction.Left:
-        return new Snake(this.cells.map(cell => cell.moveLeft()), this.direction);
+        return new Snake(this.cells.map(cell => cell.moveLeft()), newOrPreviousDirection);
       case Direction.Up:
-        return new Snake(this.cells.map(cell => cell.moveUp()), this.direction);
+        return new Snake(this.cells.map(cell => cell.moveUp()), newOrPreviousDirection);
       case Direction.Down:
-        return new Snake(this.cells.map(cell => cell.moveDown()), this.direction);
+        return new Snake(this.cells.map(cell => cell.moveDown()), newOrPreviousDirection);
       default:
         return this;
     }

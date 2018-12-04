@@ -1,6 +1,9 @@
 import { Snake } from "./Snake";
 
+
+
 export interface Game {
+  nextFrame(): Promise<Game>
   print(): string;
 }
 
@@ -25,16 +28,21 @@ export class SnakeGame implements Game {
       lineBreak
   }
 
+  async nextFrame(): Promise<Game> {
+    const newSnake = this.snake.move();
+    return new SnakeGame(this.width, this.height, newSnake);
+  }
+
   private printArenaOrSnake() {
     let string = '';
-    for (let x=0; x < this.height; x++ ) {
+    for (let y=0; y < this.height; y++) {
       string += '|';
-      for (let y=0; y < this.width; y++) {
-        if (this.snake.isSnake(x,y) === 'head') {
+      for (let x=0; x < this.width; x++) {
+        if (this.snake.isSnake(x, y) === 'head') {
           string += 'Q';
           continue;
         }
-        if (this.snake.isSnake(x,y) === 'tail') {
+        if (this.snake.isSnake(x, y) === 'tail') {
           string += 'o';
           continue;
         }
@@ -44,15 +52,5 @@ export class SnakeGame implements Game {
     }
     return string;
   }
-
-  /*
-   ----------> y
-  |
-  |
-  |
-  |
-  x
-   */
-
 }
 

@@ -4,19 +4,24 @@ To start a new game run:
 
 `yarn start {height} {width}` 
 
+## Test
+
+`yarn test`
+
 ## Conventions
 
-The grid is specified in (y, x) coordinates i.e.
+The grid is specified in (x, y) coordinates i.e.
 
- ----------> y
+ ----------> x
 |
 |
 |
 |
-x 
+y 
 
 ## To do
 
 - Move snake
 - Snake changes direction
 - Snake eats apples
+- Game over if snake eats itself

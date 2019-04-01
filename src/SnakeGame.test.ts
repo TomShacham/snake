@@ -1,11 +1,11 @@
 import { strictEqual } from "assert";
 import { SnakeGame } from "./SnakeGame";
-import { cell, snake } from "./Snake";
+import { Cell, snake } from "./Snake";
 
 describe('Snake game', () => {
 
   it('prints its snake', () => {
-    strictEqual(new SnakeGame(4, 3, snake([cell(0, 2), cell(0, 1), cell(0, 0)])).print(),
+    strictEqual(new SnakeGame(3, 4, snake([new Cell(2, 0), new Cell(1, 0), new Cell(0, 0)])).print(),
 `
  ---- 
 |ooQ |

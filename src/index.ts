@@ -4,10 +4,7 @@ import { Cell, Snake } from "./Snake";
 (async function main() {
   const [width, height] = process.argv.splice(2);
 
-  const game = new SnakeGame(
-    Number(width),
-    Number(height),
-    new Snake([new Cell(0, 2), new Cell(0, 1)]));
+  const game = new SnakeGame(Number(height), Number(width), new Snake([new Cell(2, 0), new Cell(1, 0)]));
 
   process.stdin.resume();
   process.stdin.setRawMode!(true);

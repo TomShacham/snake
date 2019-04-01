@@ -2,10 +2,6 @@ export class Cell {
   constructor(public x: number, public y: number) {}
 }
 
-export function cell(x: number, y: number): Cell {
-  return new Cell(x, y);
-}
-
 export enum Direction {
   Up = 'up',
   Down = 'down',
@@ -39,6 +35,6 @@ export class Snake {
   }
 }
 
-export function snake(cells: Cell[] = [cell(2, 1), cell(1, 1)]) {
+export function snake(cells: Cell[] = [new Cell(1, 2), new Cell(1, 1)]) {
   return new Snake(cells);
 }

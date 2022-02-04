@@ -1,4 +1,8 @@
-# Snake
+## Snake
+
+This is a fun interview challenge for Typescript.
+
+## Run
 
 To start a new game run:
 

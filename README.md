@@ -12,12 +12,14 @@ To start a new game run:
 
 The grid is specified in (x, y) coordinates i.e.
 
+```
  ----------> x
 |
 |
 |
 |
 y 
+```
 
 ## To do
 
